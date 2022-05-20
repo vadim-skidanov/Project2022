@@ -81,7 +81,7 @@ const AuthProvider = (props) => {
   const cookieData = cookie.userData;
 
   const checkUserExists = (email, password) => {
-    if (cookieData.users.length > 0) {
+    if (cookieData.length > 1) {
       return cookieData.users.find((user) => {
         const emailIsValid = user.email === email;
         const passwordIsValid = user.password === password;
@@ -91,11 +91,13 @@ const AuthProvider = (props) => {
         }
         return false;
       });
+    } else {
+      return;
     }
   };
 
   const checkUserEmail = (email) => {
-    if (cookieData.users.length > 0) {
+    if (cookieData.length > 1) {
       return !!cookieData.users.find((user) => user.email === email); // returns boolean
     }
     return false;
