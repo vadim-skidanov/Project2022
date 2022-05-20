@@ -1,0 +1,31 @@
+.nav ul {
+  list-style: none;
+
+  display: flex;
+  gap: 2rem;
+}
+
+.nav a:link,
+.nav a:visited,
+.nav button {
+  color: #FAF3F3;
+  background-color: #A7BBC7;
+  text-decoration: none;
+  font-size: 1.6rem;
+  padding: 0.8rem 2.4rem;
+  border-radius: 2rem;
+  cursor: pointer;
+  letter-spacing: 1.5px;
+}
+
+
+.nav a:hover,
+.nav button:hover {
+  color: #545e64;
+}
+
+.nav a:active,
+.nav button  {
+  color: #FAF3F3;
+
+}

@@ -1,25 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
+import Header from "./components/Header/Header";
+import HomePage from "./components/Pages/HomePage/HomePage";
+import UserPage from "./components/Pages/UserPage/UserPage";
+import LoginPage from "./components/Pages/LoginPage/LoginPage";
+import { useCookies } from "react-cookie";
+import { Routes, Route, Navigate } from "react-router-dom";
 
-function App() {
+const App = () => {
+  const [cookie] = useCookies(["user"]);
+  const isLoggedIn = cookie.isLoggedIn;
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Header />
+      <main>
+        <Routes>
+          <Route path="/home" element={<HomePage />} />
+
+          {isLoggedIn && <Route path="/welcome" element={<UserPage />} />}
+
+          <Route
+            path="/signIn"
+            element={isLoggedIn ? <Navigate to="/welcome" /> : <LoginPage />}
+          />
+
+          <Route
+            path="/signUp"
+            element={isLoggedIn ? <Navigate to="/welcome" /> : <LoginPage />}
+          />
+
+          <Route path="*" element={<Navigate to="/home" />} />
+        </Routes>
+      </main>
+    </>
   );
-}
+};
 
 export default App;
