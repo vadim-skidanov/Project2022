@@ -7,7 +7,7 @@ const initialState = {
   isValid: null,
 };
 
-const loginReducer = (state, action) => {
+const inputReducer = (state, action) => {
   if (action.type === "EMAIL") {
     return {
       value: action.val,
@@ -29,17 +29,19 @@ const loginReducer = (state, action) => {
     };
   }
 
-  return initialState;
+  if (action.type === "BLUR") {
+    return {
+      value: state.value,
+      isTouched: true,
+    };
+  }
+
+  if (action.type === "") return initialState;
 };
 
 const AuthProvider = (props) => {
   const [cookie, setCookie, removeCookie] = useCookies(["auth"]);
-  const [emailState, dispatchEmail] = useReducer(loginReducer, initialState);
-  const [nameState, dispatchName] = useReducer(loginReducer, initialState);
-  const [passwordState, dispatchPassword] = useReducer(
-    loginReducer,
-    initialState
-  );
+  const [inputState, dispatch] = useReducer(inputReducer, initialState);
 
   useEffect(() => {
     if (!cookie.userData) {
@@ -51,37 +53,37 @@ const AuthProvider = (props) => {
         { path: "/" }
       );
     }
-  }, [cookie, setCookie]);
+  });
 
   const nameInputHandler = (e) => {
-    dispatchName({
+    dispatch({
       type: "NAME",
       val: e.target.value,
     });
   };
 
   const emailInputHandler = (e) => {
-    dispatchEmail({
+    dispatch({
       type: "EMAIL",
       val: e.target.value,
     });
   };
 
   const passwordInputHandler = (e) => {
-    dispatchPassword({
+    dispatch({
       type: "PASSWORD",
       val: e.target.value,
     });
   };
 
-  const { isValid: nameIsValid, value: nameValue } = nameState;
-  const { isValid: emailIsValid, value: emailValue } = emailState;
-  const { isValid: passwordIsValid, value: passwordValue } = passwordState;
+  const { isValid: nameIsValid, value: nameValue } = inputState;
+  const { isValid: emailIsValid, value: emailValue } = inputState;
+  const { isValid: passwordIsValid, value: passwordValue } = inputState;
 
   const cookieData = cookie.userData;
 
   const checkUserExists = (email, password) => {
-    if (cookieData.length > 1) {
+    if (cookieData.users.length > 0) {
       return cookieData.users.find((user) => {
         const emailIsValid = user.email === email;
         const passwordIsValid = user.password === password;
@@ -97,11 +99,15 @@ const AuthProvider = (props) => {
   };
 
   const checkUserEmail = (email) => {
-    if (cookieData.length > 1) {
+    if (cookieData.users.length > 0) {
       return !!cookieData.users.find((user) => user.email === email); // returns boolean
     }
     return false;
   };
+
+  // const blurHandler = () => {
+  //   // disp;
+  // };
 
   const signInHandler = () => {
     const loggedInUser = checkUserExists(emailValue, passwordValue);
