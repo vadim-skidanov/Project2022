@@ -36,12 +36,24 @@ const inputReducer = (state, action) => {
     };
   }
 
-  if (action.type === "") return initialState;
+  return initialState;
 };
 
 const AuthProvider = (props) => {
   const [cookie, setCookie, removeCookie] = useCookies(["auth"]);
-  const [inputState, dispatch] = useReducer(inputReducer, initialState);
+
+  const [emailState, dispatchEmail] = useReducer(inputReducer, initialState);
+  const [nameState, dispatchName] = useReducer(inputReducer, initialState);
+  const [passwordState, dispatchPassword] = useReducer(
+    inputReducer,
+    initialState
+  );
+
+  const { isValid: nameIsValid, value: nameValue } = nameState;
+  const { isValid: emailIsValid, value: emailValue } = emailState;
+  const { isValid: passwordIsValid, value: passwordValue } = passwordState;
+
+  const cookieData = cookie.userData;
 
   useEffect(() => {
     if (!cookie.userData) {
@@ -56,31 +68,25 @@ const AuthProvider = (props) => {
   });
 
   const nameInputHandler = (e) => {
-    dispatch({
+    dispatchName({
       type: "NAME",
       val: e.target.value,
     });
   };
 
   const emailInputHandler = (e) => {
-    dispatch({
+    dispatchEmail({
       type: "EMAIL",
       val: e.target.value,
     });
   };
 
   const passwordInputHandler = (e) => {
-    dispatch({
+    dispatchPassword({
       type: "PASSWORD",
       val: e.target.value,
     });
   };
-
-  const { isValid: nameIsValid, value: nameValue } = inputState;
-  const { isValid: emailIsValid, value: emailValue } = inputState;
-  const { isValid: passwordIsValid, value: passwordValue } = inputState;
-
-  const cookieData = cookie.userData;
 
   const checkUserExists = (email, password) => {
     if (cookieData.users.length > 0) {
@@ -94,7 +100,7 @@ const AuthProvider = (props) => {
         return false;
       });
     } else {
-      return;
+      return false;
     }
   };
 
@@ -104,10 +110,6 @@ const AuthProvider = (props) => {
     }
     return false;
   };
-
-  // const blurHandler = () => {
-  //   // disp;
-  // };
 
   const signInHandler = () => {
     const loggedInUser = checkUserExists(emailValue, passwordValue);
