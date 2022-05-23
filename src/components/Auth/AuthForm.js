@@ -42,10 +42,11 @@ const AuthForm = () => {
   };
 
   return (
-    <Card className={classes.form}>
-      <div className={classes.login}>
-        <form onSubmit={submitHandler}>
-          {location.pathname === "/signUp" && (
+    <Card className={classes["form-cnt"]}>
+      {/* <div className={classes["form-cnt"]}> */}
+      <form onSubmit={submitHandler}>
+        {location.pathname === "/signUp" && (
+          <div className={classes.testik}>
             <Input
               input={{
                 type: "text",
@@ -54,8 +55,9 @@ const AuthForm = () => {
                 onChange: nameInputHandler,
               }}
             />
-          )}
-
+          </div>
+        )}
+        <div className={classes.testik}>
           <Input
             input={{
               type: "email",
@@ -64,7 +66,9 @@ const AuthForm = () => {
               onChange: emailInputHandler,
             }}
           />
-
+          <p className={classes.test}>Email is invalid.</p>
+        </div>
+        <div className={classes.testik}>
           <Input
             input={{
               type: "password",
@@ -73,13 +77,14 @@ const AuthForm = () => {
               onChange: passwordInputHandler,
             }}
           />
-          {
-            <button type="submit">
-              {location.pathname === "/signUp" ? "Sign Up" : "Sign In"}
-            </button>
-          }
-        </form>
-      </div>
+        </div>
+        {
+          <button type="submit">
+            {location.pathname === "/signUp" ? "Sign Up" : "Sign In"}
+          </button>
+        }
+      </form>
+      {/* </div> */}
     </Card>
   );
 };

@@ -3,10 +3,12 @@ import classes from "./Input.module.css";
 
 const Input = forwardRef((props, ref) => {
   return (
-    <div>
+    // <div>
+    <>
       <input className={classes.input} ref={ref} {...props.input} />
-      {props.error && <p>{props.message}</p>}
-    </div>
+      {/* {props.error && <p>{props.message}</p>} */}
+      {/* </div> */}
+    </>
   );
 });
 

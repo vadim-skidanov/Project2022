@@ -2,11 +2,13 @@
   width: 100%;
     padding: 1rem;
     border-radius: 1rem;
-    border: none;
+    border: 1px transparent solid;
+   
 }
 
 .input:focus {
   outline: none;
+  border: 1px #ddd solid;
 }
 
 .input:focus::placeholder {
