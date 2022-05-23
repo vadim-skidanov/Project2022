@@ -7,6 +7,10 @@ const initialState = {
   isValid: null,
 };
 
+const initialBlurState = {
+  isTouched: false,
+};
+
 const inputReducer = (state, action) => {
   if (action.type === "EMAIL") {
     return {
@@ -29,9 +33,20 @@ const inputReducer = (state, action) => {
     };
   }
 
-  if (action.type === "BLUR") {
+  if (action.type === "NAME_BLUR") {
     return {
-      value: state.value,
+      isTouched: true,
+    };
+  }
+
+  if (action.type === "EMAIL_BLUR") {
+    return {
+      isTouched: true,
+    };
+  }
+
+  if (action.type === "PASSWORD_BLUR") {
+    return {
       isTouched: true,
     };
   }
@@ -41,6 +56,21 @@ const inputReducer = (state, action) => {
 
 const AuthProvider = (props) => {
   const [cookie, setCookie, removeCookie] = useCookies(["auth"]);
+
+  const [nameBlurState, dispatchNameBlur] = useReducer(
+    inputReducer,
+    initialBlurState
+  );
+
+  const [emailBlurState, dispatchEmailBlur] = useReducer(
+    inputReducer,
+    initialBlurState
+  );
+
+  const [passwordBlurState, dispatchPasswordBlur] = useReducer(
+    inputReducer,
+    initialBlurState
+  );
 
   const [emailState, dispatchEmail] = useReducer(inputReducer, initialState);
   const [nameState, dispatchName] = useReducer(inputReducer, initialState);
@@ -106,7 +136,7 @@ const AuthProvider = (props) => {
 
   const checkUserEmail = (email) => {
     if (cookieData.users.length > 0) {
-      return !!cookieData.users.find((user) => user.email === email); // returns boolean
+      return !!cookieData.users.find((user) => user.email === email);
     }
     return false;
   };
@@ -155,14 +185,47 @@ const AuthProvider = (props) => {
     document.location.reload();
   };
 
+  const nameBlurHandler = () => {
+    dispatchNameBlur({
+      type: "NAME_BLUR",
+    });
+  };
+
+  const emailBlurHandler = () => {
+    dispatchEmailBlur({
+      type: "EMAIL_BLUR",
+    });
+  };
+
+  const passwordBlurHandler = () => {
+    dispatchPasswordBlur({
+      type: "PASSWORD_BLUR",
+    });
+  };
+
+  const inputValidation = {
+    nameHasError: !nameIsValid && nameBlurState.isTouched,
+    nameIsValid,
+    emailHasError: !emailIsValid && emailBlurState.isTouched,
+    emailIsValid,
+    passwordHasError: !passwordIsValid && passwordBlurState.isTouched,
+    passwordIsValid,
+  };
+
   const loginContext = {
     nameHandler: nameInputHandler,
     emailHandler: emailInputHandler,
     passwordHandler: passwordInputHandler,
 
+    onNameBlur: nameBlurHandler,
+    onEmailBlur: emailBlurHandler,
+    onPasswordBlur: passwordBlurHandler,
+
     onSignIn: signInHandler,
     onSignUp: signUpHandler,
     onLogout: logoutHandler,
+
+    inputValidation,
   };
 
   return (

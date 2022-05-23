@@ -11,19 +11,25 @@ button {
     border: none;
     font: inherit;
     color: inherit;
-    letter-spacing: 1px;
+    letter-spacing: 1px; 
     font-size: 1.5rem;
     cursor: pointer;
   }
 
 
-  
 
-  .testik {
+  .form-control {
     padding-bottom: 3rem;
   }
 
-  .test {
+
+
+  .invalid input{
+    border: 1px #b40e0e solid;
+  }
+
+  .error {
     margin: 8px;
-    color: red;
+    margin-bottom: 0;
+    color: #b40e0e; 
   }

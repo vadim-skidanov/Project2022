@@ -6,7 +6,7 @@ const Header = () => {
   return (
     <header className={classes["header"]}>
       <Link to="/home" className={classes.logo}>
-        vad@vad.com bob@bob.com
+        vad@vad.com
       </Link>
       <Navigation />
     </header>

@@ -36,55 +36,99 @@ const AuthForm = () => {
     if (location.pathname === "/signUp") {
       authCtx.onSignUp(nameRef, emailRef, passwordRef);
     }
+  };
 
-    // emailRef.current.value = "";
-    // passwordRef.current.value = "";
+  const nameClasses = authCtx.inputValidation.nameHasError
+    ? `${classes["form-control"]} ${classes.invalid}`
+    : classes["form-control"];
+
+  const emailClasses = authCtx.inputValidation.emailHasError
+    ? `${classes["form-control"]} ${classes.invalid}`
+    : classes["form-control"];
+
+  const passwordClasses = authCtx.inputValidation.passwordHasError
+    ? `${classes["form-control"]} ${classes.invalid}`
+    : classes["form-control"];
+
+  const signUpButton =
+    authCtx.inputValidation.nameIsValid &&
+    authCtx.inputValidation.emailIsValid &&
+    authCtx.inputValidation.passwordIsValid;
+
+  const signInButton =
+    authCtx.inputValidation.emailIsValid &&
+    authCtx.inputValidation.passwordIsValid;
+
+  const nameBlurHandler = () => {
+    authCtx.onNameBlur();
+  };
+
+  const emailBlurHandler = () => {
+    authCtx.onEmailBlur();
+  };
+
+  const passwordBlurHandler = () => {
+    authCtx.onPasswordBlur();
   };
 
   return (
     <Card className={classes["form-cnt"]}>
-      {/* <div className={classes["form-cnt"]}> */}
       <form onSubmit={submitHandler}>
         {location.pathname === "/signUp" && (
-          <div className={classes.testik}>
+          <div className={nameClasses}>
             <Input
               input={{
                 type: "text",
                 placeholder: "Name",
                 ref: nameRef,
                 onChange: nameInputHandler,
+                onBlur: nameBlurHandler,
               }}
             />
+            {authCtx.inputValidation.nameHasError && (
+              <p className={classes.error}>
+                Please enter a password (at least 3 characters long).
+              </p>
+            )}
           </div>
         )}
-        <div className={classes.testik}>
+        <div className={emailClasses}>
           <Input
             input={{
               type: "email",
               placeholder: "Email",
               ref: emailRef,
               onChange: emailInputHandler,
+              onBlur: emailBlurHandler,
             }}
           />
-          <p className={classes.test}>Email is invalid.</p>
+          {authCtx.inputValidation.emailHasError && (
+            <p className={classes.error}>Please enter a valid email.</p>
+          )}
         </div>
-        <div className={classes.testik}>
+        <div className={passwordClasses}>
           <Input
             input={{
               type: "password",
               placeholder: "Password",
               ref: passwordRef,
               onChange: passwordInputHandler,
+              onBlur: passwordBlurHandler,
             }}
           />
+          {authCtx.inputValidation.passwordHasError && (
+            <p className={classes.error}>
+              Please enter a password (at least 4 characters long).
+            </p>
+          )}
         </div>
-        {
-          <button type="submit">
-            {location.pathname === "/signUp" ? "Sign Up" : "Sign In"}
-          </button>
-        }
+        {location.pathname === "/signUp" && signUpButton && (
+          <button type="submit">Sign Up</button>
+        )}
+        {location.pathname === "/signIn" && signInButton && (
+          <button type="submit">Sign In</button>
+        )}
       </form>
-      {/* </div> */}
     </Card>
   );
 };
