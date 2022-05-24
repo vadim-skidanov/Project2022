@@ -11,11 +11,22 @@ const initialBlurState = {
   isTouched: false,
 };
 
+const validateEmail = (email) => {
+  const validationRegex = /\S+@\S+\.\S+/;
+  return validationRegex.test(email.trim());
+};
+
+const validateName = (name) => {
+  const validationRegex = /^[a-zA-Z]+$/;
+  const userName = name.trim().length > 2 || "";
+  return validationRegex.test(userName);
+};
+
 const inputReducer = (state, action) => {
   if (action.type === "EMAIL") {
     return {
       value: action.val,
-      isValid: action.val.trim().includes("@"),
+      isValid: validateEmail(action.val),
     };
   }
 
@@ -29,7 +40,7 @@ const inputReducer = (state, action) => {
   if (action.type === "NAME") {
     return {
       value: action.val,
-      isValid: action.val.trim().length > 2,
+      isValid: validateName(action.val),
     };
   }
 
