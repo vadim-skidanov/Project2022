@@ -1,5 +1,5 @@
-import { useReducer, useEffect } from "react";
-import { useCookies } from "react-cookie";
+import { useReducer } from "react";
+import Cookies from "universal-cookie";
 import AuthContext from "./auth-context";
 
 const initialState = {
@@ -72,8 +72,6 @@ const inputReducer = (state, action) => {
 };
 
 const AuthProvider = (props) => {
-  const [cookie, setCookie, removeCookie] = useCookies(["auth"]);
-
   const [nameBlurState, dispatchNameBlur] = useReducer(
     inputReducer,
     initialBlurState
@@ -99,20 +97,11 @@ const AuthProvider = (props) => {
   const { isValid: nameIsValid, value: nameValue } = nameState;
   const { isValid: emailIsValid, value: emailValue } = emailState;
   const { isValid: passwordIsValid, value: passwordValue } = passwordState;
+  const cookies = new Cookies();
 
-  const cookieData = cookie.userData;
-
-  useEffect(() => {
-    if (!cookie.userData) {
-      setCookie(
-        "userData",
-        {
-          users: [],
-        },
-        { path: "/" }
-      );
-    }
-  });
+  if (!cookies.get("userData")) {
+    cookies.set("userData", { users: [] }, { path: "/" });
+  }
 
   const nameInputHandler = (e) => {
     dispatchName({
@@ -136,8 +125,8 @@ const AuthProvider = (props) => {
   };
 
   const checkUserExists = (email, password) => {
-    if (cookieData.users.length > 0) {
-      return cookieData.users.find((user) => {
+    if (cookies.get("userData").users.length > 0) {
+      return cookies.get("userData").users.find((user) => {
         const emailIsValid = user.email === email;
         const passwordIsValid = user.password === password;
 
@@ -152,8 +141,10 @@ const AuthProvider = (props) => {
   };
 
   const checkUserEmail = (email) => {
-    if (cookieData.users.length > 0) {
-      return !!cookieData.users.find((user) => user.email === email);
+    if (cookies.get("userData").users.length > 0) {
+      return !!cookies
+        .get("userData")
+        .users.find((user) => user.email === email);
     }
     return false;
   };
@@ -161,8 +152,8 @@ const AuthProvider = (props) => {
   const signInHandler = () => {
     const loggedInUser = checkUserExists(emailValue, passwordValue);
     if (emailIsValid && passwordIsValid && loggedInUser) {
-      setCookie("isLoggedIn", true, { path: "/" });
-      setCookie("loggedInData", loggedInUser, { path: "/" });
+      cookies.set("isLoggedIn", true, { path: "/" });
+      cookies.set("loggedInData", loggedInUser, { path: "/" });
       document.location.reload();
       return loggedInUser;
     } else {
@@ -172,7 +163,7 @@ const AuthProvider = (props) => {
 
   const signUpHandler = () => {
     const emailExists = checkUserEmail(emailValue);
-    const existingUsers = cookieData.users;
+    const existingUsers = cookies.get("userData").users;
     if (!emailExists && nameIsValid && emailIsValid && passwordIsValid) {
       const user = {
         id: Date.now(),
@@ -180,15 +171,15 @@ const AuthProvider = (props) => {
         email: emailValue,
         password: passwordValue,
       };
-      setCookie(
+      cookies.set(
         "userData",
         {
           users: [...(existingUsers || ""), user],
         },
         { path: "/" }
       );
-      setCookie("isLoggedIn", true, { path: "/" });
-      setCookie("loggedInData", user, { path: "/" });
+      cookies.set("isLoggedIn", true, { path: "/" });
+      cookies.set("loggedInData", user, { path: "/" });
       document.location.reload();
     } else {
       return;
@@ -196,8 +187,8 @@ const AuthProvider = (props) => {
   };
 
   const logoutHandler = () => {
-    removeCookie("isLoggedIn");
-    removeCookie("loggedInData");
+    cookies.remove("isLoggedIn");
+    cookies.remove("loggedInData");
 
     document.location.reload();
   };
