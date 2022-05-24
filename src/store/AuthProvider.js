@@ -22,6 +22,12 @@ const validateName = (name) => {
   return validationRegex.test(userName);
 };
 
+const validatePassword = (password) => {
+  const validationRegex = /^[a-zA-Z]+$/;
+  const userPassword = password.trim().length > 4 || "";
+  return validationRegex.test(userPassword);
+};
+
 const inputReducer = (state, action) => {
   if (action.type === "EMAIL") {
     return {
@@ -33,7 +39,7 @@ const inputReducer = (state, action) => {
   if (action.type === "PASSWORD") {
     return {
       value: action.val,
-      isValid: action.val.trim().length > 3,
+      isValid: validatePassword(action.val),
     };
   }
 

@@ -87,7 +87,7 @@ const AuthForm = () => {
             />
             {authCtx.inputValidation.nameHasError && (
               <p className={classes.error}>
-                Please enter a password (at least 3 characters long).
+                Please enter a name (at least 3 characters long).
               </p>
             )}
           </div>
@@ -118,7 +118,7 @@ const AuthForm = () => {
           />
           {authCtx.inputValidation.passwordHasError && (
             <p className={classes.error}>
-              Please enter a password (at least 4 characters long).
+              Please enter a password (at least 5 characters long).
             </p>
           )}
         </div>
