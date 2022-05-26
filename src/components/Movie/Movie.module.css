@@ -2,6 +2,8 @@
 .movie {
   width: 30rem;
   overflow: hidden;
+  cursor: pointer;
+  background-color: var(--primary-color);
 }
 
 .movie-img {
@@ -9,6 +11,19 @@
 }
 
 .movie-info {
+  padding: 1rem;
+  font-size: 1.6rem;
+
   display: flex;
   justify-content: space-between;
+  align-items: center;
+}
+
+.movie-rating {
+  background-color: var(--secondary-color);
+  margin-left: 0.6rem;
+  padding: 0.5rem; 
+  min-width: 3.4rem;
+  border-radius: 50%;
+  text-align: center;
 }

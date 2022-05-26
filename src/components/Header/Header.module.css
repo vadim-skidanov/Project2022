@@ -11,8 +11,9 @@
 .logo:visited {
   color: #fff;
   text-decoration: none;
-  font-size: 2rem;
-  letter-spacing: 0.7px;
+  font-size: 2.2rem;
+  font-weight: 700;
+  letter-spacing: 1.6px;
   margin-left: 2rem;
   cursor: pointer;
 }
