@@ -2,7 +2,6 @@ import { useRef, useContext } from "react";
 import { useLocation } from "react-router-dom";
 import Input from "../UI/Input/Input";
 import AuthContext from "../../store/auth-context";
-import Card from "../UI/Card/Card";
 import classes from "./AuthForm.module.css";
 
 const AuthForm = () => {
@@ -71,9 +70,51 @@ const AuthForm = () => {
     authCtx.onPasswordBlur();
   };
 
+  const heading =
+    location.pathname === "/signUp" ? (
+      <h2 className={classes.heading}>Sign Up</h2>
+    ) : (
+      <h2 className={classes.heading}>Sign In</h2>
+    );
+
+  const nameError = authCtx.inputValidation.nameHasError && (
+    <p className={classes["error-msg"]}>
+      Please enter a name (at least 3 characters long).
+    </p>
+  );
+
+  const emailError = authCtx.inputValidation.emailHasError && (
+    <p className={classes["error-msg"]}>Please enter a valid email.</p>
+  );
+
+  const passwordError = authCtx.inputValidation.passwordHasError && (
+    <p className={classes["error-msg"]}>
+      Please enter a password (at least 5 characters long).
+    </p>
+  );
+
+  let submitButton;
+
+  if (location.pathname === "/signUp" && signUpButton) {
+    submitButton = (
+      <button className={classes.submit} type="submit">
+        Sign Up
+      </button>
+    );
+  }
+
+  if (location.pathname === "/signIn" && signInButton) {
+    submitButton = (
+      <button className={classes.submit} type="submit">
+        Sign In
+      </button>
+    );
+  }
+
   return (
-    <Card className={classes["form-cnt"]}>
-      <form onSubmit={submitHandler}>
+    <>
+      {heading}
+      <form onSubmit={submitHandler} className={classes.form}>
         {location.pathname === "/signUp" && (
           <div className={nameClasses}>
             <Input
@@ -85,11 +126,7 @@ const AuthForm = () => {
                 onBlur: nameBlurHandler,
               }}
             />
-            {authCtx.inputValidation.nameHasError && (
-              <p className={classes.error}>
-                Please enter a name (at least 3 characters long).
-              </p>
-            )}
+            {nameError}
           </div>
         )}
         <div className={emailClasses}>
@@ -102,9 +139,7 @@ const AuthForm = () => {
               onBlur: emailBlurHandler,
             }}
           />
-          {authCtx.inputValidation.emailHasError && (
-            <p className={classes.error}>Please enter a valid email.</p>
-          )}
+          {emailError}
         </div>
         <div className={passwordClasses}>
           <Input
@@ -116,20 +151,11 @@ const AuthForm = () => {
               onBlur: passwordBlurHandler,
             }}
           />
-          {authCtx.inputValidation.passwordHasError && (
-            <p className={classes.error}>
-              Please enter a password (at least 5 characters long).
-            </p>
-          )}
+          {passwordError}
         </div>
-        {location.pathname === "/signUp" && signUpButton && (
-          <button type="submit">Sign Up</button>
-        )}
-        {location.pathname === "/signIn" && signInButton && (
-          <button type="submit">Sign In</button>
-        )}
+        {submitButton}
       </form>
-    </Card>
+    </>
   );
 };
 

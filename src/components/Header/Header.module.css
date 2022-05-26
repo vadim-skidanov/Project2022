@@ -1,11 +1,13 @@
 .header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 8rem;
-  padding: 0 3rem;
-  background-color: #E1E5EA;
+  background-color: var(--primary-color);
+  /* padding: 2rem; */
+
+  height: 6.2rem;
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   
 
   display: flex;
@@ -13,13 +15,16 @@
   align-items: center;
 }
 
-  .logo:link,
-  .logo:visited {
-    font-size: 3rem;
-    font-style: italic;
-    text-decoration: none;
-    color: inherit;
-    cursor: pointer;
-  }
+.logo:link,
+.logo:visited {
+  color: #fff;
+  text-decoration: none;
+  font-size: 2rem;
+  letter-spacing: 0.7px;
+  margin-left: 2rem;
+  cursor: pointer;
+}
+
+
 
 

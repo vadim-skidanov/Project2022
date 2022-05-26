@@ -16,22 +16,24 @@ const Navigation = () => {
   };
 
   return (
-    <nav className={classes.nav}>
-      <ul>
+    <nav className={classes["main-nav"]}>
+      <ul className={classes["main-nav-list"]}>
         {isLoggedIn && (
           <>
-            <Link to="/welcome">User</Link>
-            <li>
+            <li className={classes["main-nav-link"]}>
+              <Link to="/welcome">User</Link>
+            </li>
+            <li className={classes["main-nav-link"]}>
               <button onClick={logoutHandler}>Logout</button>
             </li>
           </>
         )}
         {!isLoggedIn && (
           <>
-            <li>
+            <li className={classes["main-nav-link"]}>
               <Link to="/signIn">Sign In</Link>
             </li>
-            <li>
+            <li className={classes["main-nav-link"]}>
               <Link to="/signUp">Sign Up</Link>
             </li>
           </>

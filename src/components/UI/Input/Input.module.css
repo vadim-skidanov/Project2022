@@ -1,9 +1,8 @@
 .input {
   width: 100%;
-    padding: 1rem;
-    border-radius: 1rem;
-    border: 1px transparent solid;
-   
+  padding: 1rem;
+  border-radius: 2rem;
+  border: none;
 }
 
 .input:focus {
