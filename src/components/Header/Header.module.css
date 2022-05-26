@@ -1,18 +1,10 @@
 .header {
   background-color: var(--primary-color);
-  /* padding: 2rem; */
-
-  height: 6.2rem;
-  position: relative;
-
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
   
-
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
+
 }
 
 .logo:link,
