@@ -1,7 +1,7 @@
-import classes from "./HomePage.module.css";
+import MovieList from "../../MovieList/MovieList";
 
 const HomePage = () => {
-  return <div className={classes.test}>Hello Word !</div>;
+  return <MovieList />;
 };
 
 export default HomePage;

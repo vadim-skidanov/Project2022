@@ -1,0 +1,14 @@
+
+.movie {
+  width: 30rem;
+  overflow: hidden;
+}
+
+.movie-img {
+  width: 100%;
+}
+
+.movie-info {
+  display: flex;
+  justify-content: space-between;
+}
