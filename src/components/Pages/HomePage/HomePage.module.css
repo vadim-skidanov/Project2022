@@ -1,9 +1,6 @@
 .test {
+  margin-top: 8rem;
   font-size: 5rem;
   text-align: center;
 }
 
-/* .test::selection {
-  background-color: #E1E5EA;
-  color: white;
-} */

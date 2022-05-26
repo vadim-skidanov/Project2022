@@ -1,7 +1,7 @@
 :root {
   --primary-color: #0c0c0c;
   --secondary-color: #262626;
-  --error-color: #b40e0e;
+  --error-color: #b40e0e
 }
 
 *,
@@ -25,3 +25,7 @@ body {
 }
 
 
+::selection {
+  background-color: #fff;
+  color: #000;
+}
