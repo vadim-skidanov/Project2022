@@ -1,0 +1,43 @@
+.movie-img img {
+  width: 100%;
+}
+
+.movie-title {
+  padding: 1rem 0 2rem 0;
+  text-align: center;
+  font-size: 42px;
+}
+
+
+
+.movie-container {
+  width: 90%;
+  margin: 0 auto;
+  margin-bottom: 5rem;
+
+  display: grid;
+  grid-template-columns: min-content 1fr;
+  gap: 5rem;
+
+}
+
+.movie-overview {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.movie-img {
+  width: 300px;
+}
+
+.movie-plot {
+  font-size: 2rem;
+  line-height: 1.6;
+  letter-spacing: 1px;
+  margin-bottom: 8rem;
+}
+
+.movie-release-date {
+  font-size: 1.5rem;
+}
