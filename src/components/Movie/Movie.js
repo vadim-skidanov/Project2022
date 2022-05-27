@@ -6,7 +6,7 @@ const Movie = (props) => {
       <img
         className={classes["movie-img"]}
         src={props.poster}
-        alt={`${props.title} movie poster`}
+        alt={props.title}
       />
       <div className={classes["movie-info"]}>
         <div className={classes["movie-title"]}>{props.title}</div>
