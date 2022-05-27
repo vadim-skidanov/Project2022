@@ -6,7 +6,7 @@ const UserPage = () => {
 
   const user = cookie.loggedInData ? cookie.loggedInData.name : "user";
 
-  return <h1 className={classes.test}>{`Hello ${user} !`}</h1>;
+  return <h2 className={classes.user}>{`Hello ${user} !`}</h2>;
 };
 
 export default UserPage;

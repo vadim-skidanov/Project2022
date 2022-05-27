@@ -7,13 +7,15 @@ import classes from "./MovieList.module.css";
 const MovieList = () => {
   const [movieData, setMovieData] = useState([]);
   const { api_url, poster_path } = moviesApiConfig;
+
   useEffect(() => {
     const fetchData = async () => {
-      const test = await moviesApiClient(api_url);
-      setMovieData(test);
+      const data = await moviesApiClient(api_url);
+      setMovieData(data);
     };
     fetchData();
   }, [api_url]);
+
   return (
     <div className={classes["movie-container"]}>
       {movieData.map((movie) => (
