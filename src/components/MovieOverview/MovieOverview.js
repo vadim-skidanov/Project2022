@@ -11,7 +11,7 @@ const MovieOverview = (props) => {
         <h2 className={classes["movie-title"]}>{props.title}</h2>
         <p className={classes["movie-plot"]}>{props.plot}</p>
         <div className={classes["movie-release-date"]}>
-          Release date: {props.release_date}
+          Release date: <span>{props.release_date}</span>
         </div>
       </div>
     </div>

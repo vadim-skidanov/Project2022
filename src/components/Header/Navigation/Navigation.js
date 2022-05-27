@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { useCookies } from "react-cookie";
-import AuthContext from "../../../store/auth-context";
+import AuthContext from "../../../store/auth-context/auth-context";
 import { Link } from "react-router-dom";
 
 import classes from "./Navigation.module.css";

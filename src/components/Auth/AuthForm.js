@@ -1,7 +1,7 @@
 import { useRef, useContext } from "react";
 import { useLocation } from "react-router-dom";
 import Input from "../UI/Input/Input";
-import AuthContext from "../../store/auth-context";
+import AuthContext from "../../store/auth-context/auth-context";
 import classes from "./AuthForm.module.css";
 
 const AuthForm = () => {
