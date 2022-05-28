@@ -3,7 +3,7 @@ import moviesApiClient from "../../api/moviesApiClient";
 import { moviesApiConfig } from "../../api/moviesApiConfig";
 import { useState, useEffect } from "react";
 import MovieCard from "../MovieCard/MovieCard";
-import Spinner from "../../assets/Spinner";
+import Spinner from "../../assets/Spiner/Spinner";
 import classes from "./MovieList.module.css";
 
 const MovieList = () => {

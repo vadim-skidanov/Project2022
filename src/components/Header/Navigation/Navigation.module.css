@@ -1,7 +1,12 @@
+.main-nav {
+  display: flex;
+}
+
 .main-nav-list { 
   list-style: none;
   letter-spacing: 0.5px;
   display: flex;
+  align-items: center ;
 }
 
 .main-nav-link a:link,

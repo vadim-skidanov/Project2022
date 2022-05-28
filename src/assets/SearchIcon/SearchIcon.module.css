@@ -1,0 +1,6 @@
+#search-logo {
+  width: 3rem;
+  cursor: pointer;
+  transform: translateX(110%);
+  z-index: 10;
+}
