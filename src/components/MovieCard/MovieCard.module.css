@@ -3,6 +3,11 @@
   overflow: hidden;
   cursor: pointer;
   background-color: var(--primary-color);
+  transition: all .3s ease;
+}
+
+.movie:hover {
+  transform: scale(1.05);
 }
 
 .movie-img {
