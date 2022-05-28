@@ -17,7 +17,7 @@ const MovieList = () => {
   }, [api_url]);
 
   return (
-    <div className={classes["movie-container"]}>
+    <section className={classes["movie-list-section"]}>
       {movieData.map((movie) => (
         <MovieCard
           key={movie.id}
@@ -29,7 +29,7 @@ const MovieList = () => {
           release_date={movie.release_date}
         />
       ))}
-    </div>
+    </section>
   );
 };
 

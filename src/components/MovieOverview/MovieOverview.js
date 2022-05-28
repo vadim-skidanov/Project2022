@@ -10,7 +10,7 @@ const MovieOverview = (props) => {
   };
 
   return (
-    <div className={classes["movie-container"]}>
+    <section className={classes["movie-overview-section"]}>
       <div className={classes["movie-img"]}>
         <img src={props.poster} alt="" />
       </div>
@@ -23,7 +23,7 @@ const MovieOverview = (props) => {
         </div>
         <button onClick={resetMovie} className={classes.close}></button>
       </div>
-    </div>
+    </section>
   );
 };
 
