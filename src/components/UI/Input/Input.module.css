@@ -13,3 +13,8 @@
 .input:focus::placeholder {
   color: transparent;
 }
+
+.input::selection {
+  background-color: #000;
+  color: #fff;
+}
