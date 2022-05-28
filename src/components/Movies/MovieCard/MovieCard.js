@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import MovieContext from "../../store/movie-context/movie-context";
+import MovieContext from "../../../store/movie-context/movie-context";
 import classes from "./MovieCard.module.css";
 
 const MovieCard = (props) => {

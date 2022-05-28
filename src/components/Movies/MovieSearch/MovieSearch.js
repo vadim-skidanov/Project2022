@@ -1,6 +1,6 @@
 import { useState } from "react";
-import SearchIcon from "../../assets/SearchIcon/SearchIcon";
-import SearchBar from "../UI/SearchBar/SearchBar";
+import SearchIcon from "../../../assets/SearchIcon/SearchIcon";
+import SearchBar from "../../UI/SearchBar/SearchBar";
 import classes from "./MovieSearch.module.css";
 
 const MovieSearch = () => {
@@ -11,8 +11,8 @@ const MovieSearch = () => {
   };
 
   const searchBarClasses = toggleSearchBar
-    ? classes["search-input"]
-    : `${classes["search-input"]} ${classes["expand"]}`;
+    ? `${classes["search-input"]} ${classes["expand"]}`
+    : classes["search-input"];
 
   const onSearch = (e) => {
     e.preventDefault();
