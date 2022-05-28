@@ -1,6 +1,14 @@
+import { useContext } from "react";
+import MovieContext from "../../store/movie-context/movie-context";
 import classes from "./MovieOverview.module.css";
 
 const MovieOverview = (props) => {
+  const movieCtx = useContext(MovieContext);
+
+  const resetMovie = () => {
+    movieCtx.resetMovie();
+  };
+
   return (
     <div className={classes["movie-container"]}>
       <div className={classes["movie-img"]}>
@@ -13,6 +21,7 @@ const MovieOverview = (props) => {
         <div className={classes["movie-release-date"]}>
           Release date: <span>{props.release_date}</span>
         </div>
+        <button onClick={resetMovie} className={classes.close}></button>
       </div>
     </div>
   );

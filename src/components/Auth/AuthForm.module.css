@@ -19,7 +19,7 @@
   padding: 0.8rem;
   border: none;
   border-radius: 2rem;
-  background-color: var(--error-color);   
+  background-color: var(--red-color);   
   font-family: inherit;
   color: inherit;
   letter-spacing: 1px; 
@@ -34,15 +34,15 @@
   }
 
   .invalid input {
-    border: 1.5px var(--error-color) solid;
+    border: 1.5px var(--red-color) solid;
   }
 
   .invalid input::placeholder {
-    color: var(--error-color);
+    color: var(--red-color);
   }
 
   .error-msg {
     margin: 8px;
     margin-bottom: 0;
-    color: #b40e0e; 
+    color: var(--red-color); 
   }

@@ -14,6 +14,7 @@
   width: 90%;
   margin: 0 auto;
   margin-bottom: 6rem;
+  position: relative;
 
   display: grid;
   grid-template-columns: min-content 1fr;
@@ -39,8 +40,42 @@
 
 .movie-release-date {
   font-size: 1.5rem;
+  border-bottom: 1px solid #fff;
+  padding-bottom: 1rem;
 }
 
 .movie-release-date span {
   padding-left: 1rem;
+}
+
+.close {
+  position: absolute;
+  background-color: inherit;
+  border: none;
+  color: inherit;
+  width: 3.5rem;
+  height: 3rem;
+  cursor: pointer;
+
+  top: 0;
+  right: 0;
+}
+
+.close:hover::before, .close:hover::after { 
+  background-color: var(--red-color);
+}
+
+.close::before, .close::after {
+  content: "";
+  background-color: #fff;
+  position: absolute;
+  height: 3rem;
+  width: 2px;
+ }
+
+ .close::before {
+  transform: rotate(45deg);
+}
+.close::after {
+  transform: rotate(-45deg);
 }

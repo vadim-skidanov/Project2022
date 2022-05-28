@@ -16,9 +16,14 @@ const MovieProvider = (props) => {
     setSelectedMovie(movieData);
   };
 
+  const resetMovie = () => {
+    setSelectedMovie();
+  };
+
   const movieCtx = {
     onMovieSelect,
     movie: selectedMovie,
+    resetMovie,
   };
 
   return (
