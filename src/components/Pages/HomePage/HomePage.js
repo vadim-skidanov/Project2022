@@ -2,6 +2,7 @@ import MovieList from "../../MovieList/MovieList";
 import { useContext } from "react";
 import MovieContext from "../../../store/movie-context/movie-context";
 import MovieOverview from "../../MovieOverview/MovieOverview";
+
 const HomePage = () => {
   const movieCtx = useContext(MovieContext);
 
