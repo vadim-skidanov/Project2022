@@ -1,24 +1,37 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect } from "react";
 import { moviesApiConfig } from "../../../api/moviesApiConfig";
-import { moviesApiClient } from "../../../api/moviesApiClient";
+import useApi from "../../../hooks/use-api";
 import MovieCard from "../MovieCard/MovieCard";
 import Spinner from "../../../assets/Spiner/Spinner";
 import classes from "./MovieList.module.css";
 
 const MovieList = () => {
   const [movieData, setMovieData] = useState([]);
-  const [isLoading, setIsLoading] = useState("false");
-  const { api_url, poster_path } = moviesApiConfig;
-
-  const fetchData = useCallback(async () => {
-    setIsLoading(true);
-    const data = await moviesApiClient(api_url);
-    setMovieData(data);
-    setIsLoading(false);
-  }, [api_url]);
+  const { poster_path } = moviesApiConfig;
+  const { sendRequest: fetchData, isLoading } = useApi();
 
   useEffect(() => {
-    fetchData();
+    const { api_url } = moviesApiConfig;
+
+    const transformData = ({ results }) => {
+      const receivedData = results.map((movie) => {
+        return {
+          id: movie.id,
+          title: movie.title,
+          poster: movie.poster_path,
+          rating: movie.vote_average,
+          overview: movie.overview,
+          release_date: movie.release_date,
+        };
+      });
+      setMovieData(receivedData);
+    };
+    fetchData(
+      {
+        url: api_url,
+      },
+      transformData
+    );
   }, [fetchData]);
 
   let content = "";

@@ -16,7 +16,6 @@ const HomePage = () => {
           release_date={movieCtx.movie.release_date}
         />
       )}
-
       <MovieList />
     </>
   );
