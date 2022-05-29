@@ -6,7 +6,7 @@ import classes from "./SearchBar.module.css";
 const SearchBar = (props) => {
   const [toggleSearchInput, setToggleSearchInput] = useState(false);
   const searchCtx = useContext(MovieContext);
-  console.log(searchCtx.searchTerm);
+
   const searchBarClasses = toggleSearchInput
     ? `${classes["search-input"]} ${classes["expand"]}`
     : classes["search-input"];
