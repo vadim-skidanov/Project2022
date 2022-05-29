@@ -55,11 +55,13 @@
   height: 3rem;
   cursor: pointer;
 
-  top: 0;
-  right: 0;
+  top: -3.5rem;
+  right: -1rem;
+  
 }
 
 .close:hover::before, .close:hover::after { 
+  transition: all .3s ease;
   background-color: var(--red-color);
 }
 
@@ -69,6 +71,7 @@
   position: absolute;
   height: 3rem;
   width: 2px;
+  transition: all .5s ease;
  }
 
  .close::before {
