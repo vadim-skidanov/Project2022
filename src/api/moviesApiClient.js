@@ -1,6 +1,4 @@
-// import { moviesApiConfig } from "./moviesApiConfig";
-
-const moviesApiClient = async (api_url) => {
+export const moviesApiClient = async (api_url) => {
   try {
     const response = await fetch(api_url);
     if (!response.ok) {
@@ -23,5 +21,3 @@ const moviesApiClient = async (api_url) => {
     console.log(e.message);
   }
 };
-
-export default moviesApiClient;

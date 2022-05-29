@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 import { moviesApiConfig } from "../../../api/moviesApiConfig";
-import moviesApiClient from "../../../api/moviesApiClient";
+import { moviesApiClient } from "../../../api/moviesApiClient";
 import MovieCard from "../MovieCard/MovieCard";
 import Spinner from "../../../assets/Spiner/Spinner";
 import classes from "./MovieList.module.css";
