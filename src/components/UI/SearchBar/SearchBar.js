@@ -3,26 +3,31 @@ import SearchIcon from "./SearchIcon/SearchIcon";
 import classes from "./SearchBar.module.css";
 
 const SearchBar = (props) => {
-  const [toggleSearchBar, setToggleSearchBar] = useState(false);
+  const [toggleSearchInput, setToggleSearchInput] = useState(false);
 
-  const searchBarClasses = toggleSearchBar
+  const searchBarClasses = toggleSearchInput
     ? `${classes["search-input"]} ${classes["expand"]}`
     : classes["search-input"];
 
-  const onSearchLogoClick = () => {
-    setToggleSearchBar((prevState) => !prevState);
+  const toggleSearchBar = () => {
+    setToggleSearchInput((prevState) => !prevState);
+  };
+
+  const searchBlurHandler = () => {
+    setToggleSearchInput(false);
   };
 
   return (
     <>
       <label htmlFor="search">
-        <SearchIcon onIconClick={onSearchLogoClick} />
+        <SearchIcon onIconClick={toggleSearchBar} />
       </label>
       <input
         id="search"
         type="search"
         className={searchBarClasses}
         placeholder={props.placeholder}
+        onBlur={searchBlurHandler}
       />
     </>
   );
