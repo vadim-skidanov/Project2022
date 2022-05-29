@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { useCookies } from "react-cookie";
 import { Link } from "react-router-dom";
 import AuthContext from "../../../store/auth-context/auth-context";
-import MovieSearch from "../../Movies/MovieSearch/MovieSearch";
+import SearchBar from "../../UI/SearchBar/SearchBar";
 import classes from "./Navigation.module.css";
 
 const Navigation = () => {
@@ -15,9 +15,11 @@ const Navigation = () => {
     authCtx.onLogout();
   };
 
+  const placeholderText = "Search movie title";
+
   return (
     <nav className={classes["main-nav"]}>
-      <MovieSearch />
+      <SearchBar placeholder={placeholderText} />
       <ul className={classes["main-nav-list"]}>
         {isLoggedIn && (
           <>
