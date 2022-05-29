@@ -12,7 +12,7 @@ const Header = () => {
     // if(location.pathname === "/home")
     movieCtx.setSearchTerm("");
     movieCtx.resetMovie("");
-    document.location.reload();
+    // document.location.reload();
   };
 
   return (
