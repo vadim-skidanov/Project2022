@@ -25,9 +25,9 @@
   padding-left: 2.5rem;
 } 
 
-.search-input::-webkit-search-cancel-button {
+/* .search-input::-webkit-search-cancel-button {
   display: none;
-}
+} */
 
 .search-input:focus {
   outline: none;
