@@ -10,6 +10,7 @@ const Header = () => {
   const resetSearchCtx = () => {
     movieCtx.setSearchTerm("");
     movieCtx.resetMovie("");
+    document.location.reload();
   };
 
   return (

@@ -3,7 +3,7 @@ import MovieContext from "./movie-context";
 
 const MovieProvider = (props) => {
   const [selectedMovie, setSelectedMovie] = useState();
-  const [searchTerm, setSearchTerm] = useState();
+  const [searchTerm, setSearchTerm] = useState("");
 
   const onMovieSelect = (movie) => {
     const movieData = {
