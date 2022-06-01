@@ -5,6 +5,7 @@ import classes from "./SearchBar.module.css";
 
 const SearchBar = (props) => {
   const [toggleSearchInput, setToggleSearchInput] = useState(false);
+  const [searchValue, setSearchValue] = useState("");
   const movieCtx = useContext(MovieContext);
 
   const searchBarClasses = toggleSearchInput
@@ -31,6 +32,7 @@ const SearchBar = (props) => {
 
   const searchInputValueHandler = (e) => {
     movieCtx.setSearchTerm(e.target.value);
+    setSearchValue(movieCtx.searchTerm);
   };
 
   const searchHandler = (e) => {
@@ -51,7 +53,7 @@ const SearchBar = (props) => {
             placeholder={props.placeholder}
             onBlur={searchBlurHandler}
             onChange={searchInputValueHandler}
-            value={movieCtx.searchTerm}
+            value={searchValue}
           />
         </form>
       </div>
