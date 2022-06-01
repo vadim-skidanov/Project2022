@@ -6,10 +6,10 @@ const ProtectedRoutes = () => {
   const isLoggedIn = cookie.isLoggedIn;
   const location = useLocation();
 
-  return isLoggedIn ? (
-    <Outlet />
-  ) : (
+  return !isLoggedIn ? (
     <Navigate to="/signIn" state={{ from: location }} replace />
+  ) : (
+    <Outlet />
   );
 };
 
