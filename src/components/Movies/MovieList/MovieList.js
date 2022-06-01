@@ -1,22 +1,22 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect } from "react";
 import { moviesApiConfig } from "../../../api/moviesApiConfig";
 import useApi from "../../../hooks/use-api";
 import MovieCard from "../MovieCard/MovieCard";
 import Spinner from "../../../assets/Spiner/Spinner";
-import MovieContext from "../../../store/movie-context/movie-context";
+import useMovie from "../../../hooks/use-movie";
 import classes from "./MovieList.module.css";
 
 const MovieList = () => {
   const [movieData, setMovieData] = useState([]);
-  const movieCtx = useContext(MovieContext);
+  const { searchTerm } = useMovie();
   const { poster_path } = moviesApiConfig;
   const { sendRequest: fetchData, isLoading } = useApi();
 
   useEffect(() => {
     const { api_url, search_api } = moviesApiConfig;
     let url = api_url;
-    if (movieCtx.searchTerm && movieCtx.searchTerm.length > 0) {
-      url = search_api + movieCtx.searchTerm;
+    if (searchTerm && searchTerm.length > 0) {
+      url = search_api + searchTerm;
     }
     const transformData = ({ results }) => {
       const receivedData = results.map((movie) => {
@@ -37,7 +37,7 @@ const MovieList = () => {
       },
       transformData
     );
-  }, [fetchData, movieCtx.searchTerm]);
+  }, [fetchData, searchTerm]);
 
   let content = "";
 

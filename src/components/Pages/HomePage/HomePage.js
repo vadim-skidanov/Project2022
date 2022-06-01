@@ -1,19 +1,17 @@
-import { useContext } from "react";
 import MovieList from "../../Movies/MovieList/MovieList";
 import MovieOverview from "../../Movies/MovieOverview/MovieOverview";
-import MovieContext from "../../../store/movie-context/movie-context";
-
+import useMovie from "../../../hooks/use-movie";
 const HomePage = () => {
-  const movieCtx = useContext(MovieContext);
+  const { movie } = useMovie();
 
   return (
     <>
-      {movieCtx.movie && (
+      {movie && (
         <MovieOverview
-          title={movieCtx.movie.title}
-          poster={movieCtx.movie.poster}
-          plot={movieCtx.movie.plot}
-          release_date={movieCtx.movie.release_date}
+          title={movie.title}
+          poster={movie.poster}
+          plot={movie.plot}
+          release_date={movie.release_date}
         />
       )}
       <MovieList />

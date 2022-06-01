@@ -1,12 +1,11 @@
-import { useContext } from "react";
-import MovieContext from "../../../store/movie-context/movie-context";
+import useMovie from "../../../hooks/use-movie";
 import classes from "./MovieOverview.module.css";
 
 const MovieOverview = (props) => {
-  const movieCtx = useContext(MovieContext);
+  const { resetMovie } = useMovie();
 
-  const resetMovie = () => {
-    movieCtx.resetMovie();
+  const resetSelectedMovie = () => {
+    resetMovie();
   };
 
   return (
@@ -21,7 +20,7 @@ const MovieOverview = (props) => {
         <div className={classes["movie-release-date"]}>
           Release date: <span>{props.release_date}</span>
         </div>
-        <button onClick={resetMovie} className={classes.close}></button>
+        <button onClick={resetSelectedMovie} className={classes.close}></button>
       </div>
     </section>
   );

@@ -1,16 +1,15 @@
-import { useContext } from "react";
-import MovieContext from "../../store/movie-context/movie-context";
+import useMovie from "../../hooks/use-movie";
 import { Link } from "react-router-dom";
 import Navigation from "./Navigation/Navigation";
 import classes from "./Header.module.css";
 
 const Header = () => {
-  const movieCtx = useContext(MovieContext);
+  const { setSearchTerm, resetMovie } = useMovie();
 
   const resetSearchCtx = () => {
-    movieCtx.setSearchTerm("");
-    movieCtx.resetMovie("");
-    document.location.reload();
+    setSearchTerm("");
+    resetMovie("");
+    // document.location.reload();
   };
 
   return (

@@ -1,17 +1,17 @@
-import { useRef, useContext } from "react";
+import { useRef } from "react";
 import { useLocation } from "react-router-dom";
 import Input from "../UI/Input/Input";
-import AuthContext from "../../store/auth-context/auth-context";
+import useAuth from "../../hooks/use-auth";
 import classes from "./AuthForm.module.css";
 
 const AuthForm = () => {
   const location = useLocation();
 
+  const authCtx = useAuth();
+
   const nameRef = useRef();
   const emailRef = useRef();
   const passwordRef = useRef();
-
-  const authCtx = useContext(AuthContext);
 
   const nameInputHandler = (e) => {
     authCtx.nameHandler(e);
