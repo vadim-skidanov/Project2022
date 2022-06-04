@@ -1,16 +1,3 @@
-.backdrop {
-  position: fixed;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100vh;
-  background: black;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 10;
-}
-
 .movie-img img {
   width: 100%;
 }
@@ -30,6 +17,7 @@
   display: grid;
   grid-template-columns: min-content 1fr;
   gap: 5rem;
+  z-index: 10;
 }
 
 .movie-overview {
@@ -65,12 +53,11 @@
   border: none;
   color: inherit;
   width: 3.5rem;
-  height: 3rem;
+  height: 3.5rem;
   cursor: pointer;
 
-  top: -3.5rem;
-  right: -1rem;
-  
+  top: -4.5rem;
+  right: -6rem;
 }
 
 .close:hover::before, .close:hover::after { 
@@ -82,9 +69,9 @@
   content: "";
   background-color: #fff;
   position: absolute;
-  height: 3rem;
-  width: 2px;
-  transition: all .5s ease;
+  height: 4rem;
+  width: 2.5px;
+  transition: all .4s ease;
  }
 
  .close::before {

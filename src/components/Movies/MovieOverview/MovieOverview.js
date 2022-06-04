@@ -1,4 +1,5 @@
 import useMovie from "../../../hooks/use-movie";
+import Modal from "../../UI/Modal/Modal";
 import classes from "./MovieOverview.module.css";
 
 const MovieOverview = (props) => {
@@ -9,8 +10,7 @@ const MovieOverview = (props) => {
   };
 
   return (
-    <>
-      <div className={classes.backdrop} />
+    <Modal>
       <section className={classes["movie-overview-section"]}>
         <div className={classes["movie-img"]}>
           <img src={props.poster} alt="" />
@@ -28,7 +28,7 @@ const MovieOverview = (props) => {
           ></button>
         </div>
       </section>
-    </>
+    </Modal>
   );
 };
 
