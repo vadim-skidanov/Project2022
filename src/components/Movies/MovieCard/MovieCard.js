@@ -1,17 +1,19 @@
-import { useContext } from "react";
-import MovieContext from "../../../store/movie-context/movie-context";
+import { useSearchParams } from "react-router-dom";
+import useMovie from "../../../hooks/use-movie";
 import classes from "./MovieCard.module.css";
 
 const MovieCard = (props) => {
-  const movieCtx = useContext(MovieContext);
-  const onMovieSelect = () => {
-    movieCtx.onMovieSelect(props);
+  const [selectedMovieParams, setSelectedMovieParams] = useSearchParams();
+  const { onMovieSelect } = useMovie();
+  const onMovieSelected = () => {
+    onMovieSelect(props);
+    setSelectedMovieParams({ movie: props.id });
   };
 
   return (
     <div className={classes.movie}>
       <img
-        onClick={onMovieSelect}
+        onClick={onMovieSelected}
         className={classes["movie-img"]}
         src={props.poster}
         alt={props.title}
