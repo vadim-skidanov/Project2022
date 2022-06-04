@@ -5,7 +5,7 @@ import AuthForm from "../../Auth/AuthForm";
 const LoginPage = () => {
   const [cookie] = useCookies(["user"]);
   const isLoggedIn = cookie.isLoggedIn;
-  return !isLoggedIn ? <AuthForm /> : <Navigate to="home" />;
+  return !isLoggedIn ? <AuthForm /> : <Navigate to="/user" />;
 };
 
 export default LoginPage;

@@ -14,7 +14,7 @@ const Header = () => {
 
   return (
     <header className={classes.header}>
-      <Link onClick={resetSearchCtx} to="/home" className={classes.logo}>
+      <Link onClick={resetSearchCtx} to="/browse" className={classes.logo}>
         React Movies
       </Link>
       <Navigation />

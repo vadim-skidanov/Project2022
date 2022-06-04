@@ -20,7 +20,7 @@ const Navigation = () => {
 
   const searchInputValueHandler = (e) => {
     setSearchTerm(e.target.value);
-    setSearchParams({ search: e.target.value });
+    setSearchParams({ search: e.target.value.trim() });
     if (e.target.value.length === 0) {
       searchParams.delete("search");
       setSearchParams(searchParams);
@@ -41,7 +41,7 @@ const Navigation = () => {
         {isLoggedIn && (
           <>
             <li className={classes["main-nav-link"]}>
-              <Link to="/welcome">User</Link>
+              <Link to="/user">User</Link>
             </li>
             <li className={classes["main-nav-link"]}>
               <button onClick={logoutHandler}>Logout</button>
