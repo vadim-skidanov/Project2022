@@ -4,6 +4,7 @@
   cursor: pointer;
   background-color: var(--primary-color);
   transition: all .3s ease;
+  align-self: start; 
 }
 
 .movie:hover {

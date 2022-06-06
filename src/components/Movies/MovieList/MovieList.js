@@ -19,6 +19,7 @@ const MovieList = () => {
       url = search_api + searchTerm;
     }
     const transformData = ({ results }) => {
+      console.log(results);
       const receivedData = results.map((movie) => {
         return {
           id: movie.id,
