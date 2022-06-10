@@ -1,5 +1,6 @@
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams, Link } from "react-router-dom";
 import useMovie from "../../../hooks/use-movie";
+import { useCookies } from "react-cookie";
 import classes from "./MovieCard.module.css";
 
 const MovieCard = (props) => {
@@ -9,6 +10,9 @@ const MovieCard = (props) => {
     onMovieSelect(props);
     setSelectedMovieParams({ movie: props.id });
   };
+
+  const [cookie] = useCookies(["user"]);
+  const isLoggedIn = cookie.isLoggedIn;
 
   return (
     <div className={classes.movie}>
@@ -22,6 +26,7 @@ const MovieCard = (props) => {
         <div className={classes["movie-title"]}>{props.title}</div>
         <span className={classes["movie-rating"]}>{props.rating}</span>
       </div>
+      <button className={classes.favorites}>+</button>
     </div>
   );
 };

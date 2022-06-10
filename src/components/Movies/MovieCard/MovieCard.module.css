@@ -5,6 +5,7 @@
   background-color: var(--primary-color);
   transition: all .3s ease;
   align-self: start; 
+  position: relative;
 }
 
 .movie:hover {
@@ -12,7 +13,7 @@
 }
 
 .movie-img {
-  width: 100%;
+  width: 100%
 }
 
 .movie-info {
@@ -31,4 +32,26 @@
   min-width: 3.4rem;
   border-radius: 50%;
   text-align: center;
+}
+
+   .favorites {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  height: 45px;
+  width: 30px;
+  background: rgba(0, 0, 0, .8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+  color: rgba (0,0,0,.5);
+}
+
+.favorites:hover {
+   font-size: 3.5rem;
+   color: #fff;
 }
