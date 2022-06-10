@@ -1,13 +1,6 @@
-import useMovie from "../../../hooks/use-movie";
 import classes from "./MovieOverview.module.css";
 
 const MovieOverview = (props) => {
-  const { resetMovie } = useMovie();
-
-  const resetSelectedMovie = () => {
-    resetMovie();
-  };
-
   return (
     <section className={classes["movie-overview-section"]}>
       <div className={classes["movie-img"]}>
@@ -20,7 +13,7 @@ const MovieOverview = (props) => {
         <div className={classes["movie-release-date"]}>
           Release date: <span>{props.release_date}</span>
         </div>
-        <button onClick={resetSelectedMovie} className={classes.close}></button>
+        <button onClick={props.reset} className={classes.close}></button>
       </div>
     </section>
   );

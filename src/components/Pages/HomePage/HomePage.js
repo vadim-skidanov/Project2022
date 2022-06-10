@@ -3,8 +3,7 @@ import MovieOverview from "../../Movies/MovieOverview/MovieOverview";
 import Modal from "../../UI/Modal/Modal";
 import useMovie from "../../../hooks/use-movie";
 const HomePage = () => {
-  const { movie } = useMovie();
-
+  const { movie, resetMovie } = useMovie();
   return (
     <>
       {movie && (
@@ -14,6 +13,7 @@ const HomePage = () => {
             poster={movie.poster}
             plot={movie.plot}
             release_date={movie.release_date}
+            reset={resetMovie}
           />
         </Modal>
       )}
