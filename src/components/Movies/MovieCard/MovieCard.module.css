@@ -18,6 +18,7 @@
 
 .movie-info {
   padding: 1rem;
+  max-height: 5rem;
   font-size: 1.6rem;
 
   display: flex;
@@ -50,6 +51,10 @@
   cursor: pointer;
   color: rgba (0,0,0,.5);
   transition: all .3s ease;
+}
+
+a:link {
+  color: #fff;
 }
 
 .favorites:hover {

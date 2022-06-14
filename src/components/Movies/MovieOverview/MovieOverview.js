@@ -4,7 +4,7 @@ const MovieOverview = (props) => {
   return (
     <section className={classes["movie-overview-section"]}>
       <div className={classes["movie-img"]}>
-        <img src={props.poster} alt="" />
+        <img src={props.poster} alt={`${props.title} movie poster`} />
       </div>
 
       <div className={classes["movie-overview"]}>

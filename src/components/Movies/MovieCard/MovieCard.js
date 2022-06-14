@@ -6,13 +6,16 @@ import classes from "./MovieCard.module.css";
 const MovieCard = (props) => {
   const [selectedMovieParams, setSelectedMovieParams] = useSearchParams();
   const { onMovieSelect } = useMovie();
+
+  const [cookie] = useCookies(["user"]);
+  const isLoggedIn = cookie.isLoggedIn;
+
   const onMovieSelected = () => {
     onMovieSelect(props);
     setSelectedMovieParams({ movie: props.id });
   };
 
-  const [cookie] = useCookies(["user"]);
-  const isLoggedIn = cookie.isLoggedIn;
+  const addToFavoritesHandler = () => {};
 
   return (
     <div className={classes.movie}>
@@ -26,7 +29,17 @@ const MovieCard = (props) => {
         <div className={classes["movie-title"]}>{props.title}</div>
         <span className={classes["movie-rating"]}>{props.rating}</span>
       </div>
-      <button className={classes.favorites}>+</button>
+      {!isLoggedIn && (
+        <Link to="/signIn">
+          <button className={classes.favorites}>+</button>
+        </Link>
+      )}
+
+      {isLoggedIn && (
+        <button onClick={addToFavoritesHandler} className={classes.favorites}>
+          +
+        </button>
+      )}
     </div>
   );
 };
