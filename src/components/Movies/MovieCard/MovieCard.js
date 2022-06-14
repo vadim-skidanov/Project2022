@@ -4,6 +4,7 @@ import { useCookies } from "react-cookie";
 import classes from "./MovieCard.module.css";
 
 const MovieCard = (props) => {
+  // eslint-disable-next-line
   const [selectedMovieParams, setSelectedMovieParams] = useSearchParams();
   const { onMovieSelect, saveMovieToFavorites } = useMovie();
 
