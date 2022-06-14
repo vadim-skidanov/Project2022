@@ -42,15 +42,15 @@ const MovieProvider = (props) => {
   //   }
   // };
 
-  //*********************  Add to favorites using single Cookie *********************//
+  //*********************  Add to favorites using Cookie *********************//
 
   const saveMovieToFavorites = (movie) => {
-    const loggedInUser = cookies.get("loggedInData");
+    const loggedIndata = cookies.get("loggedInData");
     const existingUserData = cookies.get("userData");
-    const test = existingUserData.users.filter(
-      (user) => user.id === loggedInUser.id
+    const loggedInUser = existingUserData.users.filter(
+      (user) => user.id === loggedIndata.id
     );
-    test[0].favoriteMovies.push(movie);
+    loggedInUser[0].favoriteMovies.push(movie);
     cookies.set("userData", existingUserData, { path: "/" });
     document.location.reload();
   };

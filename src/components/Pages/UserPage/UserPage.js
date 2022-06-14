@@ -5,13 +5,13 @@ import classes from "./UserPage.module.css";
 const UserPage = () => {
   const cookies = new Cookies();
 
-  const loggedInUser = cookies.get("loggedInData");
+  const loggedInData = cookies.get("loggedInData");
   const existingUserData = cookies.get("userData");
-  const test = existingUserData.users.filter(
-    (user) => user.id === loggedInUser.id
+  const loggedInUser = existingUserData.users.filter(
+    (user) => user.id === loggedInData.id
   );
 
-  const content = test[0].favoriteMovies.map((movie) => (
+  const content = loggedInUser[0].favoriteMovies.map((movie) => (
     <MovieOverview
       key={movie.id}
       title={movie.title}

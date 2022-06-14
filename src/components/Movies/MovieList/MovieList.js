@@ -19,17 +19,7 @@ const MovieList = () => {
       url = search_api + searchTerm;
     }
     const transformData = ({ results }) => {
-      const receivedData = results.map((movie) => {
-        return {
-          id: movie.id,
-          title: movie.title,
-          poster: movie.poster_path,
-          rating: movie.vote_average,
-          overview: movie.overview,
-          release_date: movie.release_date,
-        };
-      });
-      setMovieData(receivedData);
+      setMovieData(results);
     };
     fetchData(
       {
@@ -38,7 +28,6 @@ const MovieList = () => {
       transformData
     );
   }, [fetchData, searchTerm]);
-
   let content = "";
 
   if (isLoading) {
@@ -51,7 +40,7 @@ const MovieList = () => {
             key={movie.id}
             id={movie.id}
             title={movie.title}
-            poster={poster_path + movie.poster}
+            poster={poster_path + movie.poster_path}
             rating={movie.rating}
             plot={movie.overview}
             release_date={movie.release_date}
