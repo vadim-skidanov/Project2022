@@ -5,7 +5,7 @@ import classes from "./MovieCard.module.css";
 
 const MovieCard = (props) => {
   const [selectedMovieParams, setSelectedMovieParams] = useSearchParams();
-  const { onMovieSelect } = useMovie();
+  const { onMovieSelect, saveMovieToFavorites } = useMovie();
 
   const [cookie] = useCookies(["user"]);
   const isLoggedIn = cookie.isLoggedIn;
@@ -15,7 +15,9 @@ const MovieCard = (props) => {
     setSelectedMovieParams({ movie: props.id });
   };
 
-  const addToFavoritesHandler = () => {};
+  const addToFavoritesHandler = () => {
+    saveMovieToFavorites(props);
+  };
 
   return (
     <div className={classes.movie}>

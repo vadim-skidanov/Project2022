@@ -97,6 +97,7 @@ const AuthProvider = (props) => {
   const { isValid: nameIsValid, value: nameValue } = nameState;
   const { isValid: emailIsValid, value: emailValue } = emailState;
   const { isValid: passwordIsValid, value: passwordValue } = passwordState;
+
   const cookies = new Cookies();
 
   if (!cookies.get("userData")) {
@@ -170,6 +171,7 @@ const AuthProvider = (props) => {
         name: nameValue,
         email: emailValue,
         password: passwordValue,
+        favoriteMovies: [],
       };
       cookies.set(
         "userData",

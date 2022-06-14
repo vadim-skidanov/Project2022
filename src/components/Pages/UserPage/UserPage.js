@@ -1,12 +1,26 @@
-import { useCookies } from "react-cookie";
+import Cookies from "universal-cookie";
+import MovieOverview from "../../Movies/MovieOverview/MovieOverview";
 import classes from "./UserPage.module.css";
 
 const UserPage = () => {
-  const [cookie] = useCookies("[auth]");
+  const cookies = new Cookies();
 
-  const user = cookie.loggedInData ? cookie.loggedInData.name : "user";
+  const loggedInUser = cookies.get("loggedInData");
+  const existingUserData = cookies.get("userData");
+  const test = existingUserData.users.filter(
+    (user) => user.id === loggedInUser.id
+  );
 
-  return <h2 className={classes.user}>{`Hello ${user} !`}</h2>;
+  const content = test[0].favoriteMovies.map((movie) => (
+    <MovieOverview
+      key={movie.id}
+      title={movie.title}
+      poster={movie.poster}
+      plot={movie.plot}
+      release_date={movie.release_date}
+    />
+  ));
+  return <div className={classes.container}>{content}</div>;
 };
 
 export default UserPage;
