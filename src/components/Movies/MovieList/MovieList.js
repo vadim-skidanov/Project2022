@@ -20,7 +20,7 @@ const MovieList = () => {
             id={movie.id}
             title={movie.title}
             poster={poster_path + movie.poster_path}
-            rating={movie.rating}
+            rating={movie.vote_average}
             plot={movie.overview}
             release_date={movie.release_date}
           />

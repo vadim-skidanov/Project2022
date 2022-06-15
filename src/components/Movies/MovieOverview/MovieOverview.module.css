@@ -47,6 +47,7 @@
   padding-left: 1rem;
 }
 
+
 .close {
   position: absolute;
   background-color: inherit;
@@ -56,7 +57,7 @@
   height: 3.5rem;
   cursor: pointer;
 
-  top: -4.5rem;
+  top: -3.5rem;
   right: -6rem;
 }
 
@@ -69,6 +70,7 @@
   content: " ";
   background-color: #fff;
   position: absolute;
+  top: 0;
   height: 4rem;
   width: 2.5px;
   transition: all .4s ease;
