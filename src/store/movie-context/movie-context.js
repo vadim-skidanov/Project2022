@@ -6,6 +6,8 @@ const MovieContext = createContext({
   reset: () => {},
   searchTerm: "",
   setSearchTerm: "",
+  saveMovieToFavorites: () => {},
+  removeMovieFromFavorites: () => {},
 });
 
 export default MovieContext;

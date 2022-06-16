@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import SearchIcon from "./SearchIcon/SearchIcon";
 import classes from "./SearchBar.module.css";
 
@@ -9,14 +9,6 @@ const SearchBar = (props) => {
   const searchBarClasses = toggleSearchInput
     ? `${classes["search-input"]} ${classes["expand"]}`
     : classes["search-input"];
-
-  // useEffect(() => {
-  //   const debounceFn = setTimeout(() => {
-  //     movieCtx.setSearchTerm(movieCtx.searchTerm);
-  //   }, 500);
-
-  //   return () => clearTimeout(debounceFn);
-  // }, [movieCtx, movieCtx.searchTerm]);
 
   const toggleSearchBar = () => {
     setToggleSearchInput((prevState) => !prevState);

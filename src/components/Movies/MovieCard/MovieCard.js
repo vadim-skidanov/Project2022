@@ -25,6 +25,38 @@ const MovieCard = (props) => {
     removeMovieFromFavorites(props);
   };
 
+  let manageFavorites;
+
+  if (!isLoggedIn) {
+    manageFavorites = (
+      <>
+        <Link to="/signIn">
+          <button className={classes["add-to-favorites"]}>+</button>
+        </Link>
+        <Link to="/signIn">
+          <button className={classes["remove-from-favorites"]}>-</button>
+        </Link>
+      </>
+    );
+  } else {
+    manageFavorites = (
+      <>
+        <button
+          onClick={addToFavoritesHandler}
+          className={classes["add-to-favorites"]}
+        >
+          +
+        </button>
+        <button
+          onClick={removeFavoritesHandler}
+          className={classes["remove-from-favorites"]}
+        >
+          -
+        </button>
+      </>
+    );
+  }
+
   return (
     <div className={classes.movie}>
       <img
@@ -37,33 +69,7 @@ const MovieCard = (props) => {
         <div className={classes["movie-title"]}>{props.title}</div>
         <span className={classes["movie-rating"]}>{props.rating}</span>
       </div>
-      {!isLoggedIn && (
-        <>
-          <Link to="/signIn">
-            <button className={classes["add-to-favorites"]}>+</button>
-          </Link>
-          <Link to="/signIn">
-            <button className={classes["remove-from-favorites"]}>-</button>
-          </Link>
-        </>
-      )}
-
-      {isLoggedIn && (
-        <>
-          <button
-            onClick={addToFavoritesHandler}
-            className={classes["add-to-favorites"]}
-          >
-            +
-          </button>
-          <button
-            onClick={removeFavoritesHandler}
-            className={classes["remove-from-favorites"]}
-          >
-            -
-          </button>
-        </>
-      )}
+      {manageFavorites}
     </div>
   );
 };
