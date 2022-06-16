@@ -29,6 +29,32 @@ const Navigation = () => {
 
   const placeholderText = "Search movie title";
 
+  let contentList;
+
+  if (isLoggedIn) {
+    contentList = (
+      <ul className={classes["main-nav-list"]}>
+        <li className={classes["main-nav-link"]}>
+          <Link to="/user">User</Link>
+        </li>
+        <li className={classes["main-nav-link"]}>
+          <button onClick={logoutHandler}>Logout</button>
+        </li>
+      </ul>
+    );
+  } else {
+    contentList = (
+      <ul className={classes["main-nav-list"]}>
+        <li className={classes["main-nav-link"]}>
+          <Link to="/signIn">Sign In</Link>
+        </li>
+        <li className={classes["main-nav-link"]}>
+          <Link to="/signUp">Sign Up</Link>
+        </li>
+      </ul>
+    );
+  }
+
   return (
     <nav className={classes["main-nav"]}>
       <SearchBar
@@ -37,28 +63,7 @@ const Navigation = () => {
         placeholder={placeholderText}
         value={searchTerm}
       />
-      <ul className={classes["main-nav-list"]}>
-        {isLoggedIn && (
-          <>
-            <li className={classes["main-nav-link"]}>
-              <Link to="/user">User</Link>
-            </li>
-            <li className={classes["main-nav-link"]}>
-              <button onClick={logoutHandler}>Logout</button>
-            </li>
-          </>
-        )}
-        {!isLoggedIn && (
-          <>
-            <li className={classes["main-nav-link"]}>
-              <Link to="/signIn">Sign In</Link>
-            </li>
-            <li className={classes["main-nav-link"]}>
-              <Link to="/signUp">Sign Up</Link>
-            </li>
-          </>
-        )}
-      </ul>
+      {contentList}
     </nav>
   );
 };

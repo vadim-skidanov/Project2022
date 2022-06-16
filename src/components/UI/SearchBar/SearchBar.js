@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import SearchIcon from "./SearchIcon/SearchIcon";
 import classes from "./SearchBar.module.css";
 
