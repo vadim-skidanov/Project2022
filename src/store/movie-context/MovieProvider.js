@@ -25,7 +25,43 @@ const MovieProvider = (props) => {
   };
 
   const resetMovie = () => {
-    setSelectedMovie();
+    setSelectedMovie("");
+  };
+
+  //*********************  Add to favorites using Cookies *********************//
+
+  const saveMovieToFavorites = (movie) => {
+    const loggedIndata = cookies.get("loggedInData");
+    const existingUserData = cookies.get("userData");
+    const loggedInUser = existingUserData.users.filter(
+      (user) => user.id === loggedIndata.id
+    );
+
+    const movieSaved = loggedInUser[0].favoriteMovies.some(
+      (mov) => mov.id === movie.id
+    );
+
+    if (!movieSaved) {
+      loggedInUser[0].favoriteMovies.push(movie);
+      cookies.set("userData", existingUserData, { path: "/" });
+    } else {
+      return;
+    }
+  };
+
+  const removeMovieFromFavorites = (movie) => {
+    const loggedIndata = cookies.get("loggedInData");
+    const existingUserData = cookies.get("userData");
+    const loggedInUser = existingUserData.users.filter(
+      (user) => user.id === loggedIndata.id
+    );
+    const favMovies = loggedInUser[0].favoriteMovies.filter(
+      (favMovie) => favMovie.id !== movie.id
+    );
+    for (const arr of loggedInUser) {
+      arr.favoriteMovies = favMovies;
+    }
+    cookies.set("userData", { users: loggedInUser }, { path: "/" });
   };
 
   //*********************  Add to favorites using localStorage *********************//
@@ -42,19 +78,6 @@ const MovieProvider = (props) => {
   //   }
   // };
 
-  //*********************  Add to favorites using Cookie *********************//
-
-  const saveMovieToFavorites = (movie) => {
-    const loggedIndata = cookies.get("loggedInData");
-    const existingUserData = cookies.get("userData");
-    const loggedInUser = existingUserData.users.filter(
-      (user) => user.id === loggedIndata.id
-    );
-    loggedInUser[0].favoriteMovies.push(movie);
-    cookies.set("userData", existingUserData, { path: "/" });
-    document.location.reload();
-  };
-
   const movieCtx = {
     onMovieSelect,
     movie: selectedMovie,
@@ -62,6 +85,7 @@ const MovieProvider = (props) => {
     searchTerm,
     setSearchTerm,
     saveMovieToFavorites,
+    removeMovieFromFavorites,
   };
 
   return (

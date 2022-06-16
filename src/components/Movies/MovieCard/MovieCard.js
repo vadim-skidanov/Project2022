@@ -6,7 +6,8 @@ import classes from "./MovieCard.module.css";
 const MovieCard = (props) => {
   // eslint-disable-next-line
   const [selectedMovieParams, setSelectedMovieParams] = useSearchParams();
-  const { onMovieSelect, saveMovieToFavorites } = useMovie();
+  const { onMovieSelect, saveMovieToFavorites, removeMovieFromFavorites } =
+    useMovie();
 
   const [cookie] = useCookies(["user"]);
   const isLoggedIn = cookie.isLoggedIn;
@@ -18,6 +19,10 @@ const MovieCard = (props) => {
 
   const addToFavoritesHandler = () => {
     saveMovieToFavorites(props);
+  };
+
+  const removeFavoritesHandler = () => {
+    removeMovieFromFavorites(props);
   };
 
   return (
@@ -33,15 +38,31 @@ const MovieCard = (props) => {
         <span className={classes["movie-rating"]}>{props.rating}</span>
       </div>
       {!isLoggedIn && (
-        <Link to="/signIn">
-          <button className={classes.favorites}>+</button>
-        </Link>
+        <>
+          <Link to="/signIn">
+            <button className={classes["add-to-favorites"]}>+</button>
+          </Link>
+          <Link to="/signIn">
+            <button className={classes["remove-from-favorites"]}>-</button>
+          </Link>
+        </>
       )}
 
       {isLoggedIn && (
-        <button onClick={addToFavoritesHandler} className={classes.favorites}>
-          +
-        </button>
+        <>
+          <button
+            onClick={addToFavoritesHandler}
+            className={classes["add-to-favorites"]}
+          >
+            +
+          </button>
+          <button
+            onClick={removeFavoritesHandler}
+            className={classes["remove-from-favorites"]}
+          >
+            -
+          </button>
+        </>
       )}
     </div>
   );
