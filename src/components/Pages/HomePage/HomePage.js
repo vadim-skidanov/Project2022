@@ -16,7 +16,7 @@ const HomePage = () => {
             poster={movie.poster}
             plot={movie.plot}
             release_date={movie.release_date}
-            reset={resetMovie}
+            // reset={resetMovie}
           >
             <Link to="/browse">
               <button onClick={resetMovie} className={classes.close}></button>
