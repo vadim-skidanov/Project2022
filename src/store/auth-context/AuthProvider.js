@@ -156,7 +156,6 @@ const AuthProvider = (props) => {
       cookies.set("isLoggedIn", true, { path: "/" });
       cookies.set("loggedInData", loggedInUser, { path: "/" });
       document.location.reload();
-      return loggedInUser;
     } else {
       return;
     }
