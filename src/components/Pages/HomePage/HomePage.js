@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import MovieList from "../../Movies/MovieList/MovieList";
 import MovieOverview from "../../Movies/MovieOverview/MovieOverview";
 import Modal from "../../UI/Modal/Modal";
@@ -17,7 +18,9 @@ const HomePage = () => {
             release_date={movie.release_date}
             reset={resetMovie}
           >
-            <button onClick={resetMovie} className={classes.close}></button>
+            <Link to="/browse">
+              <button onClick={resetMovie} className={classes.close}></button>
+            </Link>
           </MovieOverview>
         </Modal>
       )}
