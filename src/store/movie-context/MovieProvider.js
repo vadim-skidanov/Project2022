@@ -32,12 +32,13 @@ const MovieProvider = (props) => {
   //*********************  Add to favorites using Cookies *********************//
 
   const saveMovieToFavorites = (movie) => {
-    const { user: loggedInUser, existingUsers: existingUserData } =
-      getLoggedInUser();
+    const {
+      user: loggedInUser,
+      existingUsers: existingUserData,
+      favMovies: favoriteMovies,
+    } = getLoggedInUser();
 
-    const movieSaved = loggedInUser[0].favoriteMovies.some(
-      (mov) => mov.id === movie.id
-    );
+    const movieSaved = favoriteMovies.some((mov) => mov.id === movie.id);
 
     if (!movieSaved) {
       loggedInUser[0].favoriteMovies.push(movie);
@@ -48,9 +49,9 @@ const MovieProvider = (props) => {
   };
 
   const removeMovieFromFavorites = (movie) => {
-    const { user: loggedInUser } = getLoggedInUser();
+    const { user: loggedInUser, favMovies: favoriteMovies } = getLoggedInUser();
 
-    const favMovies = loggedInUser[0].favoriteMovies.filter(
+    const favMovies = favoriteMovies.filter(
       (favMovie) => favMovie.id !== movie.id
     );
     for (const arr of loggedInUser) {
