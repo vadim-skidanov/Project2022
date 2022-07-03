@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Cookies from "universal-cookie";
 import MovieContext from "./movie-context";
+import { getLoggedInUser } from "../../utils/getLoggedInUser";
 
 const MovieProvider = (props) => {
   const [selectedMovie, setSelectedMovie] = useState("");
@@ -31,11 +32,8 @@ const MovieProvider = (props) => {
   //*********************  Add to favorites using Cookies *********************//
 
   const saveMovieToFavorites = (movie) => {
-    const loggedIndata = cookies.get("loggedInData");
-    const existingUserData = cookies.get("userData");
-    const loggedInUser = existingUserData.users.filter(
-      (user) => user.id === loggedIndata.id
-    );
+    const { user: loggedInUser, existingUsers: existingUserData } =
+      getLoggedInUser();
 
     const movieSaved = loggedInUser[0].favoriteMovies.some(
       (mov) => mov.id === movie.id
@@ -50,11 +48,8 @@ const MovieProvider = (props) => {
   };
 
   const removeMovieFromFavorites = (movie) => {
-    const loggedIndata = cookies.get("loggedInData");
-    const existingUserData = cookies.get("userData");
-    const loggedInUser = existingUserData.users.filter(
-      (user) => user.id === loggedIndata.id
-    );
+    const { user: loggedInUser } = getLoggedInUser();
+
     const favMovies = loggedInUser[0].favoriteMovies.filter(
       (favMovie) => favMovie.id !== movie.id
     );
