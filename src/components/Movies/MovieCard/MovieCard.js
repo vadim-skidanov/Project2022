@@ -6,8 +6,8 @@ import { getLoggedInUser } from "../../../utils/getLoggedInUser";
 import classes from "./MovieCard.module.css";
 
 const MovieCard = (props) => {
+  const [addButton, setAddButton] = useState(false);
   // eslint-disable-next-line
-  const [test, setTest] = useState(false);
   const [selectedMovieParams, setSelectedMovieParams] = useSearchParams();
   const { onMovieSelect, saveMovieToFavorites, removeMovieFromFavorites } =
     useMovie();
@@ -15,16 +15,18 @@ const MovieCard = (props) => {
   const [cookie] = useCookies(["user"]);
   const isLoggedIn = cookie.isLoggedIn;
 
-  const { favMovies: favoriteMovies } = getLoggedInUser();
-
   useEffect(() => {
-    const testik = favoriteMovies.some((movie) => movie.id === props.id);
-    if (testik) {
-      setTest(true);
-    } else {
-      setTest(false);
+    if (isLoggedIn) {
+      const { favMovies: favoriteMovies } = getLoggedInUser();
+
+      const isFavorite = favoriteMovies.some((movie) => movie.id === props.id);
+      if (isFavorite) {
+        setAddButton(false);
+      } else {
+        setAddButton(true);
+      }
     }
-  }, [favoriteMovies, props.id]);
+  }, [isLoggedIn, props.id]);
 
   const onMovieSelected = () => {
     onMovieSelect(props);
@@ -33,46 +35,42 @@ const MovieCard = (props) => {
 
   const addToFavoritesHandler = () => {
     saveMovieToFavorites(props);
-    setTest((prevState) => !prevState);
+    setAddButton((prevState) => !prevState);
   };
 
   const removeFavoritesHandler = () => {
     removeMovieFromFavorites(props);
-    setTest((prevState) => !prevState);
+    setAddButton((prevState) => !prevState);
   };
 
-  let manageFavorites;
-
-  const button = !test ? (
-    <button
-      onClick={addToFavoritesHandler}
-      className={classes["add-to-favorites"]}
-    >
-      +
-    </button>
-  ) : (
-    <button
-      onClick={removeFavoritesHandler}
-      className={classes["remove-from-favorites"]}
-    >
-      -
-    </button>
-  );
+  let button;
 
   if (!isLoggedIn) {
-    manageFavorites = (
+    button = (
       <>
         <Link to="/signIn">
-          <button className={classes["add-to-favorites"]}>+</button>
+          <button className={classes["manage-favorites"]}>+</button>
         </Link>
-        {/* <Link to="/signIn">
-          <button className={classes["remove-from-favorites"]}>-</button>
-        </Link> */}
       </>
     );
-    // } else if (isLoggedIn && ) {}
+  } else if (isLoggedIn && addButton) {
+    button = (
+      <button
+        onClick={addToFavoritesHandler}
+        className={classes["manage-favorites"]}
+      >
+        +
+      </button>
+    );
   } else {
-    manageFavorites = <>{button}</>;
+    button = (
+      <button
+        onClick={removeFavoritesHandler}
+        className={classes["manage-favorites"]}
+      >
+        -
+      </button>
+    );
   }
 
   return (
@@ -87,7 +85,7 @@ const MovieCard = (props) => {
         <div className={classes["movie-title"]}>{props.title}</div>
         <span className={classes["movie-rating"]}>{props.rating}</span>
       </div>
-      {manageFavorites}
+      {button}
     </div>
   );
 };

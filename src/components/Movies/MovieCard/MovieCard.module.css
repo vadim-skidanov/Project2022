@@ -35,8 +35,7 @@
   text-align: center;
 }
 
-.add-to-favorites,
-.remove-from-favorites {
+.manage-favorites {
   height: 45px;
   width: 30px;
   background: rgba(0, 0, 0, .8);
@@ -51,30 +50,18 @@
   transition: all .3s ease;
 }
 
-.add-to-favorites {
+.manage-favorites {
   position: absolute;
   left: 0;
   top: 0;
 }
 
-.remove-from-favorites {
-  position: absolute;
-  right: 0;
-  top: 0;
-}
 
 a:link {
   color: #fff;
 }
 
-.add-to-favorites:hover,
-.remove-from-favorites:hover {
+.manage-favorites:hover {
    font-size: 4rem;
    color: #fff;
-}
-
-.favorites:active,
-.remove:active {
-  font-size: 2rem;
-  color: grey;
 }
