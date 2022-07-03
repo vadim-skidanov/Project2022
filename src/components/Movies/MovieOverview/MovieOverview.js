@@ -13,7 +13,7 @@ const MovieOverview = (props) => {
         <div className={classes["movie-release-date"]}>
           Release date: <span>{props.release_date}</span>
         </div>
-        {props.children}
+        <button onClick={props.reset} className={classes.close}></button>
       </div>
     </section>
   );

@@ -42,9 +42,8 @@ const UserPage = () => {
           poster={movie.poster}
           plot={movie.plot}
           release_date={movie.release_date}
-        >
-          <button onClick={removeMovieFromFavorites}>CLOSE</button>
-        </MovieOverview>
+          reset={removeMovieFromFavorites}
+        ></MovieOverview>
       );
     });
   } else {
