@@ -56,23 +56,17 @@
   .search-input.expand {
     width: 25rem;
    }
+   .search-input::placeholder {   
+    font-size: 1.3rem;
+  } 
  }
 
  
  @media all and (max-width: 34em) {
   .search-input.expand {
-    width: 20rem;
+    width: 19rem;
     margin: 0;
-   }
+   } 
  }
 
-@media all and (max-width: 30em) { 
-  .search-input.expand {
-    width: 15rem;
-    font-size: 1.5rem;
-  }
 
-  .search-input::placeholder {   
-    font-size: 1.3rem;
-  } 
-}
