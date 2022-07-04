@@ -4,7 +4,6 @@ import { Link, useSearchParams } from "react-router-dom";
 import useAuth from "../../../hooks/use-auth";
 import useMovie from "../../../hooks/use-movie";
 import SearchBar from "../../UI/SearchBar/SearchBar";
-import HamburgerMenu from "./HamburgerMenu";
 import classes from "./Navigation.module.css";
 
 const Navigation = () => {
@@ -30,13 +29,18 @@ const Navigation = () => {
     }
   };
 
-  const HandleNavigation = () => {
+  const handleNavigation = () => {
     setDisplayNav((prevState) => !prevState);
   };
 
-  const hamburgerClasses = displayNav
-    ? `${classes["main-nav-list"]} ${classes.active}`
-    : classes["main-nav-list"];
+  // const navBlurHandler = () => {
+  //   setDisplayNav(false);
+  //   console.log("hello");
+  // };
+
+  const navigationClasses = displayNav
+    ? `${classes["main-nav"]} ${classes.active}`
+    : classes["main-nav"];
 
   const placeholderText = "Search movie title";
 
@@ -55,7 +59,7 @@ const Navigation = () => {
     );
   } else {
     contentList = (
-      <ul className={hamburgerClasses}>
+      <ul className={classes["main-nav-list"]}>
         <li className={classes["main-nav-link"]}>
           <Link to="/signIn">Sign In</Link>
         </li>
@@ -67,20 +71,19 @@ const Navigation = () => {
   }
 
   return (
-    <nav className={classes["main-nav"]}>
+    <nav className={navigationClasses}>
       <SearchBar
         onBlur={searchBlurHandler}
         onChange={searchInputValueHandler}
         placeholder={placeholderText}
         value={searchTerm}
       />
-      {contentList}
-      <HamburgerMenu onClick={HandleNavigation} />
-      {/* <div onClick={HandleNavigation} className={classes["hamburger-menu"]}>
+      <div onClick={handleNavigation} className={classes["hamburger-menu"]}>
         <div className={`${classes.line} ${classes["line-1"]}`}></div>
         <div className={`${classes.line} ${classes["line-2"]}`}></div>
         <div className={`${classes.line} ${classes["line-3"]}`}></div>
-      </div> */}
+      </div>
+      {contentList}
     </nav>
   );
 };
