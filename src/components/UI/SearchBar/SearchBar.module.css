@@ -38,3 +38,41 @@
   border: 1px #fff solid; 
   width: 40rem;
 }
+
+@media all and (max-width: 47.5em) {
+  .search-input.expand {
+    padding-left: 4rem;
+    width: 30rem;
+    font-size: 1.5rem;
+  }
+
+  .search-input::placeholder {   
+    padding-left: 0;
+    font-size: 1.5rem;
+  } 
+}
+
+@media all and (max-width: 39em) {
+  .search-input.expand {
+    width: 25rem;
+   }
+ }
+
+ 
+ @media all and (max-width: 34em) {
+  .search-input.expand {
+    width: 20rem;
+    margin: 0;
+   }
+ }
+
+@media all and (max-width: 30em) { 
+  .search-input.expand {
+    width: 15rem;
+    font-size: 1.5rem;
+  }
+
+  .search-input::placeholder {   
+    font-size: 1.3rem;
+  } 
+}

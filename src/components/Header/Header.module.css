@@ -21,6 +21,12 @@
   cursor: pointer;
 }
 
+@media all and (max-width: 36em) {
+  .logo:link,
+  .logo:visited {
+    font-size: 1.6rem;
+  }
+}
 
 
 

@@ -1,11 +1,14 @@
+import { useState } from "react";
 import { useCookies } from "react-cookie";
 import { Link, useSearchParams } from "react-router-dom";
 import useAuth from "../../../hooks/use-auth";
 import useMovie from "../../../hooks/use-movie";
 import SearchBar from "../../UI/SearchBar/SearchBar";
+import HamburgerMenu from "./HamburgerMenu";
 import classes from "./Navigation.module.css";
 
 const Navigation = () => {
+  const [displayNav, setDisplayNav] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
   const [cookie] = useCookies(["user"]);
 
@@ -27,6 +30,14 @@ const Navigation = () => {
     }
   };
 
+  const HandleNavigation = () => {
+    setDisplayNav((prevState) => !prevState);
+  };
+
+  const hamburgerClasses = displayNav
+    ? `${classes["main-nav-list"]} ${classes.active}`
+    : classes["main-nav-list"];
+
   const placeholderText = "Search movie title";
 
   let contentList;
@@ -44,7 +55,7 @@ const Navigation = () => {
     );
   } else {
     contentList = (
-      <ul className={classes["main-nav-list"]}>
+      <ul className={hamburgerClasses}>
         <li className={classes["main-nav-link"]}>
           <Link to="/signIn">Sign In</Link>
         </li>
@@ -64,6 +75,12 @@ const Navigation = () => {
         value={searchTerm}
       />
       {contentList}
+      <HamburgerMenu onClick={HandleNavigation} />
+      {/* <div onClick={HandleNavigation} className={classes["hamburger-menu"]}>
+        <div className={`${classes.line} ${classes["line-1"]}`}></div>
+        <div className={`${classes.line} ${classes["line-2"]}`}></div>
+        <div className={`${classes.line} ${classes["line-3"]}`}></div>
+      </div> */}
     </nav>
   );
 };
