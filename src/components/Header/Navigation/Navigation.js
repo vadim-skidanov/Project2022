@@ -5,6 +5,7 @@ import useAuth from "../../../hooks/use-auth";
 import useMovie from "../../../hooks/use-movie";
 import SearchBar from "../../UI/SearchBar/SearchBar";
 import classes from "./Navigation.module.css";
+import { Backdrop } from "../../UI/Modal/Modal";
 
 const Navigation = () => {
   const [displayNav, setDisplayNav] = useState(false);
@@ -33,26 +34,25 @@ const Navigation = () => {
     setDisplayNav((prevState) => !prevState);
   };
 
-  // const navBlurHandler = () => {
-  //   setDisplayNav(false);
-  //   console.log("hello");
-  // };
-
   const navigationClasses = displayNav
     ? `${classes["main-nav"]} ${classes.active}`
     : classes["main-nav"];
 
   const placeholderText = "Search movie title";
 
+  const hideNavigation = () => {
+    setDisplayNav(false);
+  };
+
   let contentList;
 
   if (isLoggedIn) {
     contentList = (
       <ul className={classes["main-nav-list"]}>
-        <li className={classes["main-nav-link"]}>
+        <li className={classes["main-nav-link"]} onClick={hideNavigation}>
           <Link to="/user">User</Link>
         </li>
-        <li className={classes["main-nav-link"]}>
+        <li className={classes["main-nav-link"]} onClick={hideNavigation}>
           <button onClick={logoutHandler}>Logout</button>
         </li>
       </ul>
@@ -60,10 +60,10 @@ const Navigation = () => {
   } else {
     contentList = (
       <ul className={classes["main-nav-list"]}>
-        <li className={classes["main-nav-link"]}>
+        <li className={classes["main-nav-link"]} onClick={hideNavigation}>
           <Link to="/signIn">Sign In</Link>
         </li>
-        <li className={classes["main-nav-link"]}>
+        <li className={classes["main-nav-link"]} onClick={hideNavigation}>
           <Link to="/signUp">Sign Up</Link>
         </li>
       </ul>
@@ -83,6 +83,7 @@ const Navigation = () => {
         <div className={`${classes.line} ${classes["line-2"]}`}></div>
         <div className={`${classes.line} ${classes["line-3"]}`}></div>
       </div>
+      {displayNav && <Backdrop onClose={hideNavigation} />}
       {contentList}
     </nav>
   );

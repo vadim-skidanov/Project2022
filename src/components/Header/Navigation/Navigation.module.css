@@ -6,7 +6,8 @@
   list-style: none;
   letter-spacing: 0.5px;
   display: flex;
-text-align: center;
+  text-align: center;
+  z-index: 90;
 }
 
 .main-nav-link a:link,
