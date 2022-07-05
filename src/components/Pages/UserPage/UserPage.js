@@ -8,7 +8,7 @@ const UserPage = () => {
 
   const { user: loggedInUser, favMovies: favoriteMovies } = getLoggedInUser();
 
-  let content;
+  let content = <h4>No Saved Movies</h4>;
 
   if (favoriteMovies.length > 0) {
     content = favoriteMovies.map((movie) => {
@@ -34,10 +34,7 @@ const UserPage = () => {
         ></MovieOverview>
       );
     });
-  } else {
-    content = <h4>No Saved Movies</h4>;
   }
-
   return <div className={classes.container}>{content}</div>;
 };
 
