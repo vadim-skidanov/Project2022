@@ -1,6 +1,10 @@
+import { useSearchParams } from "react-router-dom";
 import classes from "./MovieOverview.module.css";
 
 const MovieOverview = (props) => {
+  // eslint-disable-next-line no-unused-vars
+  const [urlParams, setUrlParams] = useSearchParams();
+
   return (
     <section className={classes["movie-overview-section"]}>
       <div className={classes["movie-img"]}>
@@ -13,7 +17,13 @@ const MovieOverview = (props) => {
         <div className={classes["movie-release-date"]}>
           Release date: <span>{props.release_date}</span>
         </div>
-        <button onClick={props.reset} className={classes.close}></button>
+        <button
+          onClick={() => {
+            props.reset();
+            setUrlParams({});
+          }}
+          className={classes.close}
+        ></button>
       </div>
     </section>
   );
