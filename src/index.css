@@ -30,6 +30,11 @@ main {
   margin-top: 15rem;
 }
 
+#root {
+  width: 100%;
+  max-height: 100%;
+}
+
 ::selection {
   background-color: #fff;
   color: #000;
